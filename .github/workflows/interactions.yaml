@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Get Latest Issue Number
         id: get_issue
-        run: echo "::set-output name=issue_number::$(curl -s -H \"Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}\" https://api.github.com/repos/${{ github.repository }}/issues | jq '.[0].number')"
+        run: |
+          echo "::set-output name=issue_number::$(curl -s -H \"Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}\" https://api.github.com/repos/${{ github.repository }}/issues | jq '.[0].number')"
 
       - name: Create Comment
         uses: peter-evans/create-or-update-comment@v3
